@@ -82,68 +82,29 @@ const user_obj = {
       creation_time: undefined
    },
 
-   playlists: [
-
-   ],
-
-   rated_shows: [
-
-   ],
+   playlists: [],
+   rated_shows: [],
 
    library: {
-      shows: [
-
-      ],
-
-      tracks: [
-
-      ],
-      
+      shows: [],
+      tracks: [],
       // ! NO INFO
-      albums: [
-
-      ],
-
-      shows: [
-         
-      ],
-
-      episodes: [
-
-      ],
-      
+      albums: [],
+      shows: [],
+      episodes: [],
       // ! NO INFO
-      banned_tracks: [
-
-      ],
-
-      artists: [
-
-      ],
-
+      banned_tracks: [],
+      artists: [],
       // ! NO INFO
-      banned_artists: [
-
-      ],
-
+      banned_artists: [],
       // ! NO INFO
-      other: [
-
-      ]
+      other: []
    },
 
    // ! NO INFO
-   payment_info: [
-
-   ],
-
-   search_queries: [
-
-   ],
-
-   streaming_history: [
-
-   ]
+   payment_info: [],
+   search_queries: [],
+   streaming_history: []
 }
 
 class Show {
@@ -322,9 +283,9 @@ for (let n = 0; n < file_arr.length; n++) {
          user_obj.rated_shows.push(new Show(show.showName, show.rating, show.ratedAt));
       });
    } else if (file_arr[n].type === e_datatype.SearchQueries) {
-      /*file_arr[n].file_obj.forEach((query) => {
+      file_arr[n].file_obj.forEach((query) => {
          user_obj.search_queries.push(new SearchQuery(query.platform, query.searchTime, query.searchQuery, query.searchInteractionURIs));
-      });*/
+      });
    } else if (file_arr[n].type === e_datatype.StreamingHistory) {
       file_arr[n].file_obj.forEach((stream) => {
          user_obj.streaming_history.push(new Stream(stream.endTime, stream.artistName, stream.trackName, stream.msPlayed));
@@ -370,4 +331,4 @@ for (let n = 0; n < file_arr.length; n++) {
 
 // console.log(user_obj);
 // console.log(file_arr)
-console.log(file_arr[5])
+// console.log(file_arr[5])
