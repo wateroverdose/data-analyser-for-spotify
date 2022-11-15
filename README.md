@@ -1,4 +1,4 @@
-# spotify-data-analyser
+# data-analyser-for-spotify
 transform your Spotify data archive into a nice html doc!
 
 this tool is in early development.
