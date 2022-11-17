@@ -1,7 +1,3 @@
-# dir with spotify data folder (sensitive)
+# dir with spotify data 
 
-/secret
-
-# folder containing organised spotify data (sensitive)
-
-/shared
+/secret/*

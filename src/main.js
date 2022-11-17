@@ -1,23 +1,23 @@
-/********************************************************************
- * collect data from ../secret or argument and save it to ../shared *
- *                 USED LATER TO GENERATE THE HTML                  *
- *******************************************************************/
+/*******************************************
+ * collect data from ../secret or argument *
+ *     USED LATER TO GENERATE THE HTML     *
+ *******************************************/
+
+// i won't split this up into multiple files because skill issue
 
 const fs = require('fs');
 const path = require('path');
 
-let dirpath = '';
+let secretpath = '';
 if (process.argv[2]) {
-   dirpath = path.join(__dirname, process.argv[2]);
+   secretpath = path.join(__dirname, process.argv[2]);
 } else {
-   dirpath = path.join(__dirname, '..', 'secret', 'MyData');
+   secretpath = path.join(__dirname, '..', 'secret', 'MyData');
 }
 
-let dirpath_files = fs.readdirSync(dirpath);
+let secret_files = fs.readdirSync(secretpath);
 
-// for (let n = 0; n < dirpath_files.length; n++) {
-//    console.log(dirpath_files[n]);
-// }
+// BEGIN definitions
 
 const e_datatype = {
    Follow: 0,
@@ -104,7 +104,15 @@ const user_obj = {
    // ! NO INFO
    payment_info: [],
    search_queries: [],
-   streaming_history: []
+   streaming_history: [],
+
+   for_web: {
+      rated_shows_amount: undefined,
+      heart_amount: undefined,
+      search_queries_amount: undefined,
+      shows_added_to_lib_amount: undefined,
+      show_eps_added_to_lib_amount: undefined
+   }
 }
 
 class Show {
@@ -200,38 +208,40 @@ class Other {
 
 // END library
 
+// END definitions
+
 const file_arr = [];
 function make_file_arr() {
    let json_offset = 0;
-   for (let n = 0; n < dirpath_files.length; n++) {
+   for (let n = 0; n < secret_files.length; n++) {
       // ? check if file is json
       // another way to do this would be to use path.parse() and use the 'ext' property
-      if (dirpath_files[n].substring(dirpath_files[n].length - 5) === '.json') {
-         const curr_path = path.join(dirpath, dirpath_files[n]);
+      if (secret_files[n].substring(secret_files[n].length - 5) === '.json') {
+         const curr_path = path.join(secretpath, secret_files[n]);
          let datatype = 0;
    
          // todo change this long ass if statement, i hate it
-         if (dirpath_files[n].match(/Follow/)) {
+         if (secret_files[n].match(/Follow/)) {
             datatype = e_datatype.Follow;
-         } else if (dirpath_files[n].match(/Identifiers/)) {
+         } else if (secret_files[n].match(/Identifiers/)) {
             datatype = e_datatype.Identifiers;
-         } else if (dirpath_files[n].match(/Identity/)) {
+         } else if (secret_files[n].match(/Identity/)) {
             datatype = e_datatype.Identity;
-         } else if (dirpath_files[n].match(/Inferences/)) {
+         } else if (secret_files[n].match(/Inferences/)) {
             datatype = e_datatype.Inferences;
-         } else if (dirpath_files[n].match(/Payments/)) {
+         } else if (secret_files[n].match(/Payments/)) {
             datatype = e_datatype.Payments;
-         } else if (dirpath_files[n].match(/Playlist/)) {
+         } else if (secret_files[n].match(/Playlist/)) {
             datatype = e_datatype.Playlist;
-         } else if (dirpath_files[n].match(/PodcastInteractivityRatedShow/)) {
+         } else if (secret_files[n].match(/PodcastInteractivityRatedShow/)) {
             datatype = e_datatype.PodcastInteractivityRatedShow;
-         } else if (dirpath_files[n].match(/SearchQueries/)) {
+         } else if (secret_files[n].match(/SearchQueries/)) {
             datatype = e_datatype.SearchQueries;
-         } else if (dirpath_files[n].match(/StreamingHistory/)) {
+         } else if (secret_files[n].match(/StreamingHistory/)) {
             datatype = e_datatype.StreamingHistory;
-         } else if (dirpath_files[n].match(/Userdata/)) {
+         } else if (secret_files[n].match(/Userdata/)) {
             datatype = e_datatype.Userdata;
-         } else if (dirpath_files[n].match(/YourLibrary/)) {
+         } else if (secret_files[n].match(/YourLibrary/)) {
             datatype = e_datatype.YourLibrary;
          } else {
             throw new Error('invalid json file name');
@@ -239,8 +249,8 @@ function make_file_arr() {
    
          file_arr[n - json_offset] = {
             path: curr_path, 
-            name: dirpath_files[n],
-            file_obj: JSON.parse(fs.readFileSync(path.join(dirpath, dirpath_files[n]), 'utf8')),
+            name: secret_files[n],
+            file_obj: JSON.parse(fs.readFileSync(path.join(secretpath, secret_files[n]), 'utf8')),
             type: datatype
          }
       } else {
@@ -250,7 +260,8 @@ function make_file_arr() {
 }
 make_file_arr();
 
-// ? update user_obj for easier reading
+// BEGIN organise files
+
 for (let n = 0; n < file_arr.length; n++) {
    if (file_arr[n].type === e_datatype.Follow) {
       user_obj.user.follower_count = file_arr[n].file_obj.followerCount;
@@ -329,6 +340,39 @@ for (let n = 0; n < file_arr.length; n++) {
    }
 }
 
+user_obj.for_web.heart_amount = user_obj.library.tracks.length;
+user_obj.for_web.rated_shows_amount = user_obj.rated_shows.length;
+user_obj.for_web.search_queries_amount = user_obj.search_queries.length;
+user_obj.for_web.shows_added_to_lib_amount = user_obj.library.shows.length;
+user_obj.for_web.show_eps_added_to_lib_amount = user_obj.library.episodes.length;
+
+let css = '';
+for (let n = 0; n < 5; n++) {
+   console.log('chuj');
+   css += `.data_${Object.keys(user_obj.for_web)[n]}::after{content:'${Object.values(user_obj.for_web)[n]}';}`
+   console.log(css)
+}
+
+
 // console.log(user_obj);
 // console.log(file_arr)
 // console.log(file_arr[5])
+
+// END organise files
+
+// BEGIN web part
+
+// BEGIN save JSON
+
+if (!fs.existsSync(secretpath)) fs.mkdirSync(secretpath);
+fs.writeFileSync(path.join(secretpath, '..', 'data.json'), JSON.stringify(user_obj));
+
+// END save JSON
+
+const webpath = path.join(__dirname, '..', 'web');
+const csspath = path.join(webpath, 'assets', 'stylesheets');
+
+if (!fs.existsSync(secretpath)) throw new Error('web directory does not exist');
+fs.writeFileSync(path.join(csspath, 'scriptgen.css'), css);
+fs.openSync(path.join(webpath, 'index.html')).close();
+// END web part
