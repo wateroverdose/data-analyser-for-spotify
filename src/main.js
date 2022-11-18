@@ -3,7 +3,7 @@
  *     USED LATER TO GENERATE THE HTML     *
  *******************************************/
 
-// i won't split this up into multiple files because skill issue
+// i won't split this up into multiple easier-to-understand-the-task-of-this-file files because skill issue
 
 const fs = require('fs');
 const path = require('path');
@@ -372,7 +372,7 @@ fs.writeFileSync(path.join(secretpath, '..', 'data.json'), JSON.stringify(user_o
 const webpath = path.join(__dirname, '..', 'web');
 const csspath = path.join(webpath, 'assets', 'stylesheets');
 
-if (!fs.existsSync(secretpath)) throw new Error('web directory does not exist');
+if (!fs.existsSync(webpath)) throw new Error('web directory does not exist, try to redownload SDA');
 fs.writeFileSync(path.join(csspath, 'scriptgen.css'), css);
-fs.openSync(path.join(webpath, 'index.html')).close();
+
 // END web part

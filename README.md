@@ -14,4 +14,4 @@ this tool is in early development.
 
 - request data from Spotify
 - unzip the data and copy the MyData directory into ./secret or specify the path later
-- run the script: `node ./src (specify path here if you don't want to copy the directory)`
+- run the script: `node ./src/main.js (specify path here if you don't want to copy the directory)` or run one of the run_* files (e.g. run_windows.bat)

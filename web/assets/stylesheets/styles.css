@@ -10,7 +10,7 @@
    font-family: 'montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
    font-weight: normal;
    /* outline: 1px #00f solid; */
-   color: var(--secondary_color);
+   color: var(--text_main);
 }
 
 .cont {
@@ -41,37 +41,27 @@
    --spotify_green: #1db954;
    --spotify_black: #191414;
    --on-green: #fff;
-   --text_black: #000;
-   --text_white: #fff;
+   --grayish: #181818;
+   --text_main: #fff;
+   --text_inverse: #000;
    --radius-1: 24px;
-
-   /* dark mode bs */
-   --card_box_sh: 0 0 8px 1px rgba(0, 0, 0, .5);
 }
 
 @media (prefers-color-scheme: dark) {
    :root {
-      --primary_color: #181818;
+      --primary_color: var(--grayish);
       --secondary_color: #fff;
-   }
-
-   .card {
-      border: solid #fff 3px;
+      --text_main: #fff;
+      --text_inverse: #000;
    }
 }
 
 @media (prefers-color-scheme: light) {
    :root {
       --primary_color: #fff;
-      --secondary_color: #181818;
-   }
-   
-   .card_box {
-      background: #fff !important;
-   }
-   
-   .card {
-      box-shadow: var(--card_box_sh);
+      --secondary_color: var(--grayish);
+      --text_main: #000;
+      --text-inverse: #fff;
    }
 }
 
@@ -84,7 +74,7 @@ header {
    color: var(--on-green);
    width: 100%;
    justify-content: space-evenly;
-   box-shadow: 0 -8px 16px 1px var(--secondary_color);
+   /* box-shadow: 0 -4px 16px 1px var(--spotify_green); */
 }
 
 header >:first-child {
@@ -107,28 +97,27 @@ header > div >:first-child {
    font-size: 1.4rem;
 }
 
-section .card_box {
-   background: #fff;
-}
-
 .card_box {
    display: flex;
    flex-wrap: wrap;
    justify-content: center;
    align-items: center;
-}
-
-.card {
-   margin: 3vh 0 3vh 0;
+   background: var(--primary_color);
 }
 
 .card {
    border-radius: var(--radius-1);
-   background: #fff;
+   background: var(--primary_color);   
    width: 80vw;
    height: 70vh;
    max-width: 450px;
    overflow: hidden;
+   margin: 3vh 0 3vh 0;
+   border: solid #fff 3px;
+}
+
+.card.light {
+   box-shadow: 0 0 8px 1px rgba(0, 0, 0, .5);
 }
 
 .card .card_title {
@@ -137,6 +126,7 @@ section .card_box {
    min-height: 105px;
    display: flex;
    align-items: center;
+   border-bottom: solid 3px #fff;
 }
 
 .card .card_title > h1 {
@@ -148,10 +138,15 @@ section .card_box {
 
 .card_content {
    margin: 12px;
-   height: calc(100% - 20% - 12px - 12px);
+   height: calc(100% - 20% - 12px - 12px - 3px);
+             /* 100% - title size - margins of content - border of title */
    display: flex;
    flex-direction: column;
    justify-content: space-between;
+}
+
+.card_content > div > div {
+   overflow-x: auto;
 }
 
 .card_content > div {
@@ -159,7 +154,7 @@ section .card_box {
 }
 
 .card_content span {
-   color: var(--text_black);
+   color: var(--text_main);
 }
 
 .smol {
@@ -173,15 +168,27 @@ section .card_box {
 }
 
 .icon_heart {
+   content: url(../images/svg/heart_light.svg);
+}
+
+.icon_heart.light {
    content: url(../images/svg/heart.svg);
 }
 
 .icon_half_star {
+   content: url(../images/svg/half_star_light.svg);
+}
+
+.icon_half_star.light {
    content: url(../images/svg/half_star.svg);
 }
 
-.icon {
-   background-size: contain;
+.icon_mag_glass {
+   content: url(../images/svg/search.svg);
+}
+
+.icon_mag_glass.light {
+   content: url(../images/svg/search_light.svg);
 }
 
 .card_content > div > div {
@@ -198,11 +205,51 @@ section .card_box {
    font-weight: normal;
 }
 
+.card_content >:first-child {
+   overflow: auto;
+   scrollbar-gutter: auto;
+   scrollbar-width: thin;
+}
+
 #dark_mode_switch {
    width: 100%;
    height: 30px;
    background: #000;
 }
+
+#dark_mode_switch label {
+   color: #fff;
+}
+
+.icon {
+   display: inline-block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -257,7 +304,8 @@ section .card_box {
    }
 
    .card_content .icon {
-      height: 2.3rem;
+      height: 36px;
+      width: 36px;
    }
 }
 
@@ -267,7 +315,8 @@ section .card_box {
    }
 
    .card_content .icon {
-      height: 3rem;
+      height: 42px;
+      width: 42px;
    }
 }
 
@@ -279,6 +328,11 @@ section .card_box {
 
    .card_content {
       font-size: 1.5rem;
+   }
+
+   .card_content .icon {
+      height: 28px;
+      width: 28px;
    }
 }
 
