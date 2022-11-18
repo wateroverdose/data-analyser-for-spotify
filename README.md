@@ -13,5 +13,5 @@ this tool is in early development.
 ## usage:
 
 - request data from Spotify
-- unzip the data and copy the MyData directory into ./secret or...
-- run the script: `node ./src`
+- unzip the data and copy the MyData directory into ./secret or specify the path later
+- run the script: `node ./src (specify path here if you don't want to copy the directory)`
