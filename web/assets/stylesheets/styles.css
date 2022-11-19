@@ -116,7 +116,7 @@ header > div >:first-child {
    border: solid #fff 3px;
 }
 
-.card.light {
+.card.light, .card.light .card_title {
    box-shadow: 0 0 8px 1px rgba(0, 0, 0, .5);
 }
 
@@ -136,7 +136,7 @@ header > div >:first-child {
    padding: 4%;
 }
 
-.card_content {
+.card_library .card_content {
    margin: 12px;
    height: calc(100% - 20% - 12px - 12px - 3px);
              /* 100% - title size - margins of content - border of title */
@@ -145,15 +145,15 @@ header > div >:first-child {
    justify-content: space-between;
 }
 
-.card_content > div > div {
+.card_library .card_content > div > div {
    overflow-x: auto;
 }
 
-.card_content > div {
+.card_library .card_content > div {
    width: 100%;
 }
 
-.card_content span {
+.card_library .card_content span {
    color: var(--text_main);
 }
 
@@ -191,21 +191,37 @@ header > div >:first-child {
    content: url(../images/svg/search_light.svg);
 }
 
-.card_content > div > div {
+.icon_tv {
+   content: url(../images/svg/tv.svg);
+}
+
+.icon_tv.light {
+   content: url(../images/svg/tv_light.svg);
+}
+
+.icon_ep {
+   content: url(../images/svg/ep.svg);
+}
+
+.icon_ep.light {
+   content: url(../images/svg/ep_light.svg);
+}
+
+.card_library .card_content > div > div {
    display: flex;
    align-items: center;
 }
 
-.card_content > div > div > span:not(.icon) {
+.card_library .card_content > div > div > span:not(.icon) {
    margin-left: 6px;
    font-weight: 700;
 }
 
-.card_content > div > div > span:last-child {
+.card_library .card_content > div > div > span:last-child {
    font-weight: normal;
 }
 
-.card_content >:first-child {
+.card_library .card_content >:first-child {
    overflow: auto;
    scrollbar-gutter: auto;
    scrollbar-width: thin;
@@ -224,6 +240,41 @@ header > div >:first-child {
 .icon {
    display: inline-block;
 }
+
+.card_artist .card_content {
+   height: calc(100% - 20% - 3px);
+   /* 100% - title size - border of title */
+   overflow: hidden;
+}
+
+.card_artist > .card_content > .artist_image {
+   width: 55%;
+   height: auto;
+   aspect-ratio: 1 / 1;
+   background: #1db954;
+}
+
+.card_artist > .card_content > .artist_name, .card_song > .card_content > .song_name {
+   font-weight: 700;
+   font-size: 3rem;
+   margin-top: 36px;
+   display: inline-block;
+   word-wrap: break-word;
+   width: 100%;
+   text-align: center;
+}
+
+.card_song > .card_content {
+   height: calc(100% - 20% - 3px);;
+}
+
+.card_song > .card_content > .song_image {
+   width: 55%;
+   height: auto;
+   aspect-ratio: 1 / 1;
+   background: url(../images/svg/spotify-record.svg);
+}
+
 
 
 
@@ -265,11 +316,11 @@ header > div >:first-child {
       flex-direction: column;
    }
 
-   .card_content {
+   .card_library .card_content {
       font-size: 2rem;
    }
 
-   .card_content > div > div > span:last-child {
+   .card_library .card_content > div > div > span:last-child {
       font-size: 1.5rem;
       margin-top: 4px;
    }
@@ -280,69 +331,69 @@ header > div >:first-child {
       flex-direction: row;
    }
 
-   .card_box .card {
+   .card_box .card_library {
       margin: 20px;
    }
 
-   .card .card_title h1 {
+   .card_library .card_title h1 {
       font-size: 2.5rem;
    }
 
-   .card_content > div > div > span:last-child {
+   .card_library .card_content > div > div > span:last-child {
       font-size: 1.35rem;
       margin-top: 4px;
    }
 
-   .card_content {
+   .card_library .card_content {
       font-size: 1.8rem;
    }
 }
 
 @media screen and (max-width: 600px) {
-   .card .card_title h1 {
+   .card_library .card_title h1 {
       font-size: 2rem;
    }
 
-   .card_content .icon {
+   .card_library .card_content .icon {
       height: 36px;
       width: 36px;
    }
 }
 
 @media screen and (min-width: 600px) {
-   .card .card_title h1 {
+   .card_library .card_title h1 {
       font-size: 2.25rem;
    }
 
-   .card_content .icon {
+   .card_library .card_content .icon {
       height: 42px;
       width: 42px;
    }
 }
 
 @media screen and (max-width: 450px) {
-   .card_content > div > div > span:last-child {
+   .card_library .card_content > div > div > span:last-child {
       font-size: 0.85rem;
       margin-top: 5px;
    }
 
-   .card_content {
+   .card_library .card_content {
       font-size: 1.5rem;
    }
 
-   .card_content .icon {
+   .card_library .card_content .icon {
       height: 28px;
       width: 28px;
    }
 }
 
 @media screen and (min-width: 450px) {
-   .card_content > div > div > span:last-child {
+   .card_library .card_content > div > div > span:last-child {
       font-size: 1.1rem;
       margin-top: 5px;
    }
 
-   .card_content {
+   .card_library .card_content {
       font-size: 1.75rem;
    }
 }

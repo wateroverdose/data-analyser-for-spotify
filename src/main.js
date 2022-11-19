@@ -19,102 +19,6 @@ let secret_files = fs.readdirSync(secretpath);
 
 // BEGIN definitions
 
-const e_datatype = {
-   Follow: 0,
-   Identifiers: 1,
-   Identity: 2,
-   Inferences: 3,
-   Payments: 4,
-   Playlist: 5,
-   PodcastInteractivityRatedShow: 6,
-   SearchQueries: 7,
-   StreamingHistory: 8,
-   Userdata: 9,
-   YourLibrary: 10 
-}
-
-const e_datatype_names = {
-   0: 'Follow',
-   1: 'Identifiers',
-   2: 'Identity',
-   3: 'Inferences',
-   4: 'Payments',
-   5: 'Playlist',
-   6: 'PodcastInteractivityRatedShow',
-   7: 'SearchQueries',
-   8: 'StreamingHistory',
-   9: 'Userdata',
-   10: 'YourLibrary' 
-}
-
-const e_sex = {
-   female: 0,
-   male: 1
-}
-
-const user_obj = {
-   user: {
-      follower_count: undefined,
-      following_users_count: undefined,
-      // ! NO INFO
-      dismissing_users_count: undefined,
-      identifier_type: undefined,
-      identifier_value: undefined,
-      display_name: undefined,
-      first_name: undefined,
-      last_name: undefined,
-      pfp_url: undefined,
-      pfp_large_url: undefined,
-      is_tastemaker: undefined,
-      is_verified: undefined,
-      inferences: undefined,
-      user_id: undefined,
-      email: undefined,
-      country: undefined,
-      is_created_from_facebook: undefined,
-      facebook_uid: undefined,
-      birthdate: undefined,
-      sex: undefined,
-      postal_code: undefined,
-      mobile_number: undefined,
-      mobile_operator: undefined,
-      mobile_brand: undefined,
-      creation_time: undefined
-   },
-
-   playlists: [],
-   rated_shows: [],
-
-   library: {
-      shows: [],
-      tracks: [],
-      // ! NO INFO
-      albums: [],
-      shows: [],
-      episodes: [],
-      // ! NO INFO
-      banned_tracks: [],
-      artists: [],
-      // ! NO INFO
-      banned_artists: [],
-      // ! NO INFO
-      other: []
-   },
-
-   // ! NO INFO
-   payment_info: [],
-   search_queries: [],
-   streaming_history: [],
-
-   for_web: {
-      rated_shows_amount: undefined,
-      heart_amount: undefined,
-      search_queries_amount: undefined,
-      shows_added_to_lib_amount: undefined,
-      show_eps_added_to_lib_amount: undefined
-   }
-}
-
 class Show {
    constructor(show_name, rating, rated_at) {
       this.show_name = show_name;
@@ -207,6 +111,90 @@ class Other {
 }
 
 // END library
+
+const e_datatype = {
+   Follow: 0,
+   Identifiers: 1,
+   Identity: 2,
+   Inferences: 3,
+   Payments: 4,
+   Playlist: 5,
+   PodcastInteractivityRatedShow: 6,
+   SearchQueries: 7,
+   StreamingHistory: 8,
+   Userdata: 9,
+   YourLibrary: 10 
+}
+
+const e_sex = {
+   female: 0,
+   male: 1
+}
+
+const user_obj = {
+   user: {
+      follower_count: undefined,
+      following_users_count: undefined,
+      // ! NO INFO
+      dismissing_users_count: undefined,
+      identifier_type: undefined,
+      identifier_value: undefined,
+      display_name: undefined,
+      first_name: undefined,
+      last_name: undefined,
+      pfp_url: undefined,
+      pfp_large_url: undefined,
+      is_tastemaker: undefined,
+      is_verified: undefined,
+      inferences: undefined,
+      user_id: undefined,
+      email: undefined,
+      country: undefined,
+      is_created_from_facebook: undefined,
+      facebook_uid: undefined,
+      birthdate: undefined,
+      sex: undefined,
+      postal_code: undefined,
+      mobile_number: undefined,
+      mobile_operator: undefined,
+      mobile_brand: undefined,
+      creation_time: undefined
+   },
+
+   playlists: [],
+   rated_shows: [],
+
+   library: {
+      shows: [],
+      tracks: [],
+      // ! NO INFO
+      albums: [],
+      shows: [],
+      episodes: [],
+      // ! NO INFO
+      banned_tracks: [],
+      artists: [],
+      // ! NO INFO
+      banned_artists: [],
+      // ! NO INFO
+      other: []
+   },
+
+   // ! NO INFO
+   payment_info: [],
+   search_queries: [],
+   streaming_history: [],
+
+   for_web: {
+      rated_shows_amount: undefined,
+      heart_amount: undefined,
+      search_queries_amount: undefined,
+      shows_added_to_lib_amount: undefined,
+      show_eps_added_to_lib_amount: undefined,
+      o_fav_artist: undefined,
+      o_fav_song: undefined
+   }
+}
 
 // END definitions
 
@@ -347,11 +335,16 @@ user_obj.for_web.shows_added_to_lib_amount = user_obj.library.shows.length;
 user_obj.for_web.show_eps_added_to_lib_amount = user_obj.library.episodes.length;
 
 let css = '';
-for (let n = 0; n < 5; n++) {
-   console.log('chuj');
-   css += `.data_${Object.keys(user_obj.for_web)[n]}::after{content:'${Object.values(user_obj.for_web)[n]}';}`
-   console.log(css)
+function make_css() {
+   const vals = Object.values(user_obj.for_web);
+   const keys = Object.keys(user_obj.for_web);
+   for (let n = 0; n < keys.length; n++) {
+      if (keys[n].substring(0, 2) !== 'o_') {
+         css += `.data_${keys[n]}::after{content:'${vals[n]}';}`
+      }
+   }
 }
+make_css();
 
 
 // console.log(user_obj);
