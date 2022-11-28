@@ -1,278 +1,288 @@
 @font-face {
-   font-family: 'montserrat';
-   src: url(../fonts/Montserrat-VariableFont_wght.ttf);
+  font-family: 'montserrat';
+  src: url(../fonts/Montserrat-VariableFont_wght.ttf);
 }
 
 * {
-   margin: 0;
-   padding: 0;
-   border: 0;
-   font-family: 'montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-   font-weight: normal;
-   /* outline: 1px #00f solid; */
-   color: var(--text_main);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: 'montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: normal;
+  /* outline: 1px #00f solid; */
+  color: var(--text_main);
 }
 
 .cont {
-   display: flex;
+  display: flex;
 }
 
 .jcc {
-   justify-content: center;
+  justify-content: center;
 }
 
 .aic {
-   align-items: center;
+  align-items: center;
 }
 
 .fdr {
-   flex-direction: row;
+  flex-direction: row;
 }
 
 .fdc {
-   flex-direction: column;
+  flex-direction: column;
 }
 
 .fg1 {
-   flex-grow: 1;
+  flex-grow: 1;
 }
 
 :root {
-   --spotify_green: #1db954;
-   --spotify_black: #191414;
-   --on-green: #fff;
-   --grayish: #181818;
-   --text_main: #fff;
-   --text_inverse: #000;
-   --radius-1: 24px;
+  --spotify_green: #1db954;
+  --spotify_black: #191414;
+  --on-green: #fff;
+  --grayish: #181818;
+  --text_main: #fff;
+  --text_inverse: #000;
+  --radius-1: 24px;
 }
 
 @media (prefers-color-scheme: dark) {
-   :root {
+  :root {
       --primary_color: var(--grayish);
       --secondary_color: #fff;
       --text_main: #fff;
       --text_inverse: #000;
-   }
+  }
 }
 
 @media (prefers-color-scheme: light) {
-   :root {
+  :root {
       --primary_color: #fff;
       --secondary_color: var(--grayish);
       --text_main: #000;
       --text-inverse: #fff;
-   }
+  }
 }
 
 #big_spotify_logo {
-   content: url(../images/svg/spotify_full_white.svg);
+  content: url(../images/svg/spotify_full_white.svg);
 }
 
 header {
-   height: calc(15vh + 50px);
-   color: var(--on-green);
-   width: 100%;
-   justify-content: space-evenly;
-   /* box-shadow: 0 -4px 16px 1px var(--spotify_green); */
+  height: calc(15vh + 50px);
+  color: var(--on-green);
+  width: 100%;
+  justify-content: space-evenly;
+  /* box-shadow: 0 -4px 16px 1px var(--spotify_green); */
 }
 
 header >:first-child {
-   background: var(--spotify_green);
+  background: var(--spotify_green);
 }
 
 #big_spotify_logo {
-   height: 40px;
-   width: auto;
+  height: 40px;
+  width: auto;
 }
 
 html {
-   background: var(--primary_color);
+  background: var(--primary_color);
 }
 
 header > div >:first-child {
-   color: var(--on-green);
-   margin-right: 10px;
-   font-weight: 700;
-   font-size: 1.4rem;
+  color: var(--on-green);
+  margin-right: 10px;
+  font-weight: 700;
+  font-size: 1.4rem;
 }
 
 .card_box {
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: center;
-   align-items: center;
-   background: var(--primary_color);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background: var(--primary_color);
 }
 
 .card {
-   border-radius: var(--radius-1);
-   background: var(--primary_color);   
-   width: 80vw;
-   height: 70vh;
-   max-width: 450px;
-   overflow: hidden;
-   margin: 3vh 0 3vh 0;
-   border: solid #fff 3px;
+  border-radius: var(--radius-1);
+  background: var(--primary_color);   
+  width: 80vw;
+  height: 70vh;
+  max-width: 450px;
+  overflow: hidden;
+  margin: 3vh 0 3vh 0;
+  border: solid #fff 3px;
 }
 
 .card.light, .card.light .card_title {
-   box-shadow: 0 0 8px 1px rgba(0, 0, 0, .5);
+  box-shadow: 0 0 8px 1px rgba(0, 0, 0, .5);
 }
 
 .card .card_title {
-   background: var(--spotify_green);
-   height: 20%;
-   min-height: 105px;
-   display: flex;
-   align-items: center;
-   border-bottom: solid 3px #fff;
+  background: var(--spotify_green);
+  height: 20%;
+  min-height: 105px;
+  display: flex;
+  align-items: center;
+  border-bottom: solid 3px #fff;
 }
 
 .card .card_title > h1 {
-   color: var(--on-green);
-   font-weight: 700;
-   font-size: 2.5rem;
-   padding: 4%;
+  color: var(--on-green);
+  font-weight: 700;
+  font-size: 2.5rem;
+  padding: 4%;
 }
 
 .card_library .card_content {
-   margin: 12px;
-   height: calc(100% - 20% - 12px - 12px - 3px);
-             /* 100% - title size - margins of content - border of title */
-   display: flex;
-   flex-direction: column;
-   justify-content: space-between;
+  margin: 12px;
+  height: calc(100% - 20% - 12px - 12px - 3px);
+            /* 100% - title size - margins of content - border of title */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .card_library .card_content > div > div {
-   overflow-x: auto;
+  overflow-x: auto;
 }
 
 .card_library .card_content > div {
-   width: 100%;
+  width: 100%;
 }
 
 .card_library .card_content span {
-   color: var(--text_main);
+  color: var(--text_main);
 }
 
 .smol {
-   color: rgb(128, 128, 128) !important;
-   font-size: 1rem;
+  color: rgb(128, 128, 128) !important;
+  font-size: 1rem;
 }
 
 .wh100 {
-   width: 100%;
-   height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .icon_heart {
-   content: url(../images/svg/heart_light.svg);
+  content: url(../images/svg/heart_light.svg);
 }
 
 .icon_heart.light {
-   content: url(../images/svg/heart.svg);
+  content: url(../images/svg/heart.svg);
 }
 
 .icon_half_star {
-   content: url(../images/svg/half_star_light.svg);
+  content: url(../images/svg/half_star_light.svg);
 }
 
 .icon_half_star.light {
-   content: url(../images/svg/half_star.svg);
+  content: url(../images/svg/half_star.svg);
 }
 
 .icon_mag_glass {
-   content: url(../images/svg/search.svg);
+  content: url(../images/svg/search.svg);
 }
 
 .icon_mag_glass.light {
-   content: url(../images/svg/search_light.svg);
+  content: url(../images/svg/search_light.svg);
 }
 
 .icon_tv {
-   content: url(../images/svg/tv.svg);
+  content: url(../images/svg/tv.svg);
 }
 
 .icon_tv.light {
-   content: url(../images/svg/tv_light.svg);
+  content: url(../images/svg/tv_light.svg);
 }
 
 .icon_ep {
-   content: url(../images/svg/ep.svg);
+  content: url(../images/svg/ep.svg);
 }
 
 .icon_ep.light {
-   content: url(../images/svg/ep_light.svg);
+  content: url(../images/svg/ep_light.svg);
 }
 
 .card_library .card_content > div > div {
-   display: flex;
-   align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .card_library .card_content > div > div > span:not(.icon) {
-   margin-left: 6px;
-   font-weight: 700;
+  margin-left: 6px;
+  font-weight: 700;
 }
 
 .card_library .card_content > div > div > span:last-child {
-   font-weight: normal;
+  font-weight: normal;
 }
 
 .card_library .card_content >:first-child {
-   overflow: auto;
-   scrollbar-gutter: auto;
-   scrollbar-width: thin;
+  overflow: auto;
+  scrollbar-gutter: auto;
+  scrollbar-width: thin;
 }
 
 #dark_mode_switch {
-   width: 100%;
-   height: 30px;
-   background: #000;
+  width: 100%;
+  height: 30px;
+  background: #000;
 }
 
 #dark_mode_switch label {
-   color: #fff;
+  color: #fff;
 }
 
 .icon {
-   display: inline-block;
+  display: inline-block;
 }
 
 .card_artist .card_content {
-   height: calc(100% - 20% - 3px);
-   /* 100% - title size - border of title */
-   overflow: hidden;
+  height: calc(100% - 20% - 3px);
+  /* 100% - title size - border of title */
+  overflow: hidden;
 }
 
 .card_artist > .card_content > .artist_image {
-   width: 55%;
-   height: auto;
-   aspect-ratio: 1 / 1;
-   background: #1db954;
+  width: 55%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  background: #1db954;
 }
 
 .card_artist > .card_content > .artist_name, .card_song > .card_content > .song_name {
-   font-weight: 700;
-   font-size: 3rem;
-   margin-top: 36px;
-   display: inline-block;
-   word-wrap: break-word;
-   width: 100%;
-   text-align: center;
+  font-weight: 700;
+  font-size: 3rem;
+  margin-top: 16px;
+  display: inline-block;
+  word-wrap: break-word;
+  width: 100%;
+  text-align: center;
+}
+
+.card_song > .card_content > .artist_name {
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-top: 12px;
+  display: inline-block;
+  word-wrap: break-word;
+  width: 100%;
+  text-align: center;
 }
 
 .card_song > .card_content {
-   height: calc(100% - 20% - 3px);;
+  height: calc(100% - 20% - 3px);
 }
 
 .card_song > .card_content > .song_image {
-   width: 55%;
-   height: auto;
-   aspect-ratio: 1 / 1;
-   background: url(../images/svg/spotify-record.svg);
+  width: 55%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  background: url(../images/svg/spotify-record.svg);
 }
 
 
@@ -312,88 +322,88 @@ header > div >:first-child {
 
 
 @media screen and (max-width: 1080px) {
-   .card_box {
+  .card_box {
       flex-direction: column;
-   }
+  }
 
-   .card_library .card_content {
+  .card_library .card_content {
       font-size: 2rem;
-   }
+  }
 
-   .card_library .card_content > div > div > span:last-child {
+  .card_library .card_content > div > div > span:last-child {
       font-size: 1.5rem;
       margin-top: 4px;
-   }
+  }
 }
 
 @media screen and (min-width: 1080px) {
-   .card_box {
+  .card_box {
       flex-direction: row;
-   }
+  }
 
-   .card_box .card_library {
+  .card_box .card_library {
       margin: 20px;
-   }
+  }
 
-   .card_library .card_title h1 {
+  .card_library .card_title h1 {
       font-size: 2.5rem;
-   }
+  }
 
-   .card_library .card_content > div > div > span:last-child {
+  .card_library .card_content > div > div > span:last-child {
       font-size: 1.35rem;
       margin-top: 4px;
-   }
+  }
 
-   .card_library .card_content {
+  .card_library .card_content {
       font-size: 1.8rem;
-   }
+  }
 }
 
 @media screen and (max-width: 600px) {
-   .card_library .card_title h1 {
+  .card_library .card_title h1 {
       font-size: 2rem;
-   }
+  }
 
-   .card_library .card_content .icon {
+  .card_library .card_content .icon {
       height: 36px;
       width: 36px;
-   }
+  }
 }
 
 @media screen and (min-width: 600px) {
-   .card_library .card_title h1 {
+  .card_library .card_title h1 {
       font-size: 2.25rem;
-   }
+  }
 
-   .card_library .card_content .icon {
+  .card_library .card_content .icon {
       height: 42px;
       width: 42px;
-   }
+  }
 }
 
 @media screen and (max-width: 450px) {
-   .card_library .card_content > div > div > span:last-child {
+  .card_library .card_content > div > div > span:last-child {
       font-size: 0.85rem;
       margin-top: 5px;
-   }
+  }
 
-   .card_library .card_content {
+  .card_library .card_content {
       font-size: 1.5rem;
-   }
+  }
 
-   .card_library .card_content .icon {
+  .card_library .card_content .icon {
       height: 28px;
       width: 28px;
-   }
+  }
 }
 
 @media screen and (min-width: 450px) {
-   .card_library .card_content > div > div > span:last-child {
+  .card_library .card_content > div > div > span:last-child {
       font-size: 1.1rem;
       margin-top: 5px;
-   }
+  }
 
-   .card_library .card_content {
+  .card_library .card_content {
       font-size: 1.75rem;
-   }
+  }
 }
